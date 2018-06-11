@@ -13,7 +13,7 @@ class Application
       end
     elsif req.path.match(/cart/)
       if @@cart.empty?
-        resp.write "Your cart is empty"
+        resp.write "Your cart is empty\n"
       else
         @@cart.each {|item| resp.write "#{item}\n"}
       end
@@ -24,8 +24,9 @@ class Application
       add_term = req.params["item"]
       if @@items.include?(add_term)
         @@cart << add_term
+        resp.write "added #{add_term}\n"
       else
-        "We don't have that item"
+        resp.write "We don't have that item\n"
       end
     else
       resp.write "Path Not Found"
